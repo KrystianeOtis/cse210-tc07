@@ -4,5 +4,5 @@
 ## Contributers
 
 * Colton Kramer
-
-Krystiane Otis
+* Krystiane Otis
+* Grant Shirley
