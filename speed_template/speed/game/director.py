@@ -31,7 +31,7 @@ class Director:
         self._keep_playing = True
         self._output_service = output_service
         self._score = Score()
-        self._snake = Snake()
+        self._snake = Snake() #grant_note won't need this... maybe
         
     def start_game(self):
         """Starts the game loop to control the sequence of play.
@@ -52,8 +52,12 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        direction = self._input_service.get_direction()
-        self._snake.move_head(direction)
+        direction = self._input_service.get_letter()
+        self._snake.get_points(direction)
+
+        """#grant_note we will make a value where if enter is pressed then it will do what is needed
+        if("enter"):
+            pass"""
 
     def _do_updates(self):
         """Updates the important game information for each round of play. In 
@@ -62,8 +66,9 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        self._handle_body_collision()
+        #self._handle_body_collision()
         self._handle_food_collision()
+        pass
         
     def _do_outputs(self):
         """Outputs the important game information for each round of play. In 
@@ -75,7 +80,7 @@ class Director:
         """
         self._output_service.clear_screen()
         self._output_service.draw_actor(self._food)
-        self._output_service.draw_actors(self._snake.get_all())
+        self._output_service.draw_actor(self._snake) #grant_note display the guessed word
         self._output_service.draw_actor(self._score)
         self._output_service.flush_buffer()
 
@@ -86,6 +91,8 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
+
+
         head = self._snake.get_head()
         body = self._snake.get_body()
         for segment in body:
@@ -100,6 +107,20 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
+        #grant_note this section we might use to see if what the user typed matches with any of the words
+
+        #grant_note we also need to make sure that it only activates if the user clicks enter, aka, when the last character in the guessed word string equals "*"
+
+        written = self._snake.get_word()
+        food = self._food.get_text()+"*"
+        if(written == food):
+            points = self._food.get_points()
+            self._score.add_points(points)
+            self._snake.reset()
+            self._food.reset()
+
+        
+        """
         head = self._snake.get_head()
         if head.get_position().equals(self._food.get_position()):
             points = self._food.get_points()
@@ -107,3 +128,4 @@ class Director:
                 self._snake.grow_tail()
             self._score.add_points(points)
             self._food.reset() 
+            """

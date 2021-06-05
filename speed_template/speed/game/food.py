@@ -10,7 +10,9 @@ class Food(Actor):
         position = Point(random.randrange(0, constants.MAX_X), random.randrange(1, constants.MAX_Y))
         self.set_position(position)
         self._points = random.randint(1,5)
-        self.set_text("@")
+        self.set_text("h")
+        #self._segments = [] probably what we will need to store each of the words... maybe
+        #Maybe we just need all of the words in a list and then return that list to compare each of the words with the user's guess
         
 
     def get_points(self):
