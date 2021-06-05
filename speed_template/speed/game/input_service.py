@@ -33,7 +33,7 @@ class InputService:
         if not event is None:
             if event == 27:
                 sys.exit()
-            elif event == 10: 
+            elif event == 13: #13 is the value of the enter key
                 result = "*"
             elif event >= 97 and event <= 122: 
                 result = chr(event)
