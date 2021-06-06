@@ -19,7 +19,7 @@ class Snake(Actor):
         """
         super().__init__()
         self._letters = ""
-        position = Point(1, constants.MAX_Y -1)
+        position = Point(1, constants.MAX_Y)
         self.set_position(position)
         self.set_text(f"Score: {self._letters}")
     
