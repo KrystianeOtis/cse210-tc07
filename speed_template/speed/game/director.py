@@ -52,8 +52,9 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        direction = self._input_service.get_letter()
-        self._snake.get_points(direction)
+        letter = self._input_service.get_letter()
+        self._snake.get_points(letter)
+        self._food.move_word()
 
         """#grant_note we will make a value where if enter is pressed then it will do what is needed
         if("enter"):
@@ -69,7 +70,7 @@ class Director:
         #self._handle_body_collision()
         #self._food.add_one()
         self._handle_food_collision()
-        pass
+        
         
     def _do_outputs(self):
         """Outputs the important game information for each round of play. In 
@@ -80,7 +81,7 @@ class Director:
             self (Director): An instance of Director.
         """
         self._output_service.clear_screen()
-        self._output_service.draw_actor(self._food) #need to fix
+        self._output_service.draw_actors(self._food.get_all()) #need to fix
         self._output_service.draw_actor(self._snake) #grant_note display the guessed word
         self._output_service.draw_actor(self._score)
         self._output_service.flush_buffer()
@@ -91,7 +92,7 @@ class Director:
 
         Args:
             self (Director): An instance of Director.
-        """
+        """ 
 
 
         head = self._snake.get_head()
