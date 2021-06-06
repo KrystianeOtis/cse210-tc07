@@ -106,7 +106,7 @@ class Food(Actor):
         """for x in range (0, 5):
             #Chooses a random quote from the list and then breaks the quote up into a list that is stored into val
             self.lists.append(random.choice(list_quotes))
-            self.lists[x] = self.lists[x][:-1]"""
+            self.lists[x] = self.lists[x][:-1]""" 
 
         """
         for x in range (0, 5):

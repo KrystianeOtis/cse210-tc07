@@ -92,7 +92,7 @@ class Director:
 
         Args:
             self (Director): An instance of Director.
-        """
+        """ 
 
 
         head = self._snake.get_head()
