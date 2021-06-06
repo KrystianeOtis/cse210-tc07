@@ -67,6 +67,7 @@ class Director:
             self (Director): An instance of Director.
         """
         #self._handle_body_collision()
+        #self._food.add_one()
         self._handle_food_collision()
         pass
         
@@ -79,7 +80,7 @@ class Director:
             self (Director): An instance of Director.
         """
         self._output_service.clear_screen()
-        self._output_service.draw_actor(self._food)
+        self._output_service.draw_actor(self._food) #need to fix
         self._output_service.draw_actor(self._snake) #grant_note display the guessed word
         self._output_service.draw_actor(self._score)
         self._output_service.flush_buffer()
@@ -111,13 +112,21 @@ class Director:
 
         #grant_note we also need to make sure that it only activates if the user clicks enter, aka, when the last character in the guessed word string equals "*"
 
+        compare = "0"
         written = self._snake.get_word()
+        if(written != ""):
+            compare = written
+            compare = compare.rstrip(compare[-1])
+            compare += "*"
+
         food = self._food.get_text()+"*"
         if(written == food):
             points = self._food.get_points()
             self._score.add_points(points)
             self._snake.reset()
             self._food.reset()
+        elif(written == compare):
+            self._snake.reset()
 
         
         """
